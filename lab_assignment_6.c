@@ -1,8 +1,26 @@
+// DENNIS SHEA, TOROSDOGLI COP3502C, LAB 6, 2-22-24
+
 #include <stdio.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+     if (low <= high) {
+		//calc the middle index
+        int mid = low + (high - low) / 2;
+
+        if (numbers[mid] == value) {
+			// the value is at the middle index
+            return mid; 
+        } else if (numbers[mid] < value) {
+			// search the right half
+            return search(numbers, mid + 1, high, value); 
+        } else {
+			// search the left half
+            return search(numbers, low, mid - 1, value); 
+        }
+    }
+	// low > high so return -1
+    return -1;
 }
 
 void printArray(int numbers[], int sz)
